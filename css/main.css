@@ -83,6 +83,40 @@ img {
   background-color: #fff;
 }
 
+/* 스크롤 시 애니메이션을 공통 스타일로 추가 */
+/* BACK TO POSITON */
+.back-to-position {
+  opacity: 0;
+  transition: 1s;
+}
+
+.back-to-position.to-left {
+  /* 오른쪽에서 왼쪽으로 나타나는 */
+  transform: translateX(150px);
+}
+
+  .back-to-position.to-right {
+  /* 왼쪽에서 오른쪽으로 나타나는 */
+  transform: translateX(-150px);
+}
+
+.show .back-to-position {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.show .back-to-position.delay-1 {
+  transition-delay: 0.3s;
+}
+
+.show .back-to-position.delay-2 {
+  transition-delay: 0.6s;
+}
+
+.show .back-to-position.delay-3 {
+  transition-delay: 0.9s;
+}
+
 /* HEADER */
 header {
   background-color: #f6f5f0;
@@ -604,4 +638,304 @@ header .badges .badge {
 .rewards .btn-group .btn.gift {
   margin-top: 10px;
   flex-grow: 1; /* Flex Container 내부에서 최대한의 너비를 쓸 수 있도록 */
+}
+
+/* YOUTUBE */
+.youtube {
+  position: relative;
+  height: 700px;
+  background-color: #333; 
+  /* 영상 출력 넘치는 부분 숨기기 */
+  overflow: hidden;
+
+  /* 정가운데 배치 방법3 */
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+}
+
+.youtube .youtube__area {
+  /* 유튜브의 표준 영상 비율 16:9 */
+  width: 1920px;
+  height: 1080px;
+  background-color: orange;
+
+  /* 정가운데 배치하는 기술들(3가지) */
+  position: absolute;
+
+  /* 방법1 */
+  /* 부모의 50% 위치에 배치하고 margin을 이용하여 정가운데로 옮기기 */
+  left: 50%;
+  top: 50%;
+  /* 가로 너비의 절반만큼 땡겨오기 */
+  /* margin-left: calc(1920px / -2); */
+  /* 세로 높이의 절반만큼 땡겨오기 */
+  /* margin-top: calc(1080px / -2); */
+
+  /* 방법2 */
+  /* top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto; */
+
+  /* 방법3 */
+  /* .youtube에 flex */
+
+  /* 중복 스타일 변수로 선언 */
+  /*  
+    너비, 높이를 수정할 경우 총 4곳 수정 필요 -> CSS 변수 선언으로 재사용
+    2개의 대시(--)기호로 시작하고 원하는 변수명 지정: CSS값
+    선언된 변수는 CSS var() 함수를 통해 사용
+
+    활용 예: 주로 색상 지정 시 사용
+  */
+  /* 
+    주의! 자신이 선언된 선택자와 그 하위 요소에서만 유효
+    전역 변수로 사용하고 싶으면, html에 사용
+    html {
+      --error: red;
+    }
+    :root {
+      --error: red;
+    }
+  */
+  --width: 1920px;
+  --height: 1080px;
+  width: var(--width);
+  height: var(--height);
+  margin-left: calc(var(--width) / -2);
+  margin-top: calc(var(--height) / -2);
+}
+
+#player {
+  width: 100%;
+  height: 100%;
+}
+
+.youtube .youtube__cover {
+  /* 화면 전체를 다 덮고 싶을때(모달창)  */
+  /* position: fixed;
+  z-index: 99; */
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  background-image: url("../images/video_cover_pattern.png");
+}
+
+.youtube .inner {
+  height: 100%;
+  /* background-color: royalblue; */
+}
+
+.youtube .floating1 {
+  position: absolute;
+  top: 50px;
+  left: 0;
+}
+
+.youtube .floating2 {
+  position: absolute;
+  top: 350px;
+  left: 150px;
+}
+
+
+/* SEASON PRODUCT */
+.season-product {
+  background-image: url("../images/season_product_bg.jpg");
+}
+
+.season-product .inner {
+  height: 400px;
+}
+
+.season-product .floating3 {
+  position: absolute;
+  top: -200px;
+  right: 0;
+}
+
+.season-product .text-group {
+  position: absolute;
+  top: 110px;
+  right: 100px;
+}
+
+.season-product .text-group .title {
+  margin-bottom: 10px;
+}
+
+.season-product .text-group .description {
+  margin-bottom: 15px;
+}
+
+/* RESERVE COFFEE */
+.reserve-coffee {
+  background-image: url("../images/reserve_bg.jpg");
+}
+
+.reserve-coffee .inner {
+  height: 400px;
+}
+
+.reserve-coffee .reserve-logo {
+  position: absolute;
+  top: 110px;
+  left: 0;
+}
+
+.reserve-coffee .text-group {
+  position: absolute;
+  top: 124px;
+  left: 208px;
+}
+
+.reserve-coffee .product {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+/* PICK YOUR FAVORITE */
+.pick-your-favorite {
+  background-image: url("../images/favorite_bg.jpg");
+  /* 배경 이미지에 시차 효과(Parallax) 주기 */
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.pick-your-favorite .inner {
+  padding: 110px 0;
+}
+
+.pick-your-favorite .text-group {
+  /* border: 10px solid red; */
+  display: flex;
+  flex-wrap: wrap;
+  /* 정렬 영역이 충분하면 줄바꿈 되지 않음, 너비를 제한해서 강제로 줄바꿈 */
+  width: 362px;
+  justify-content: flex-end;
+  margin-left: 100px;
+}
+
+.pick-your-favorite .text-group .title {
+  margin-bottom: 40px;
+}
+
+.pick-your-favorite .text-group .description {
+  margin-bottom: 40px;
+}
+
+/* RESERVE STORE */
+.reserve-store {
+  background-image: url("../images/reserve_store_bg.jpg");
+  /* 배경 이미지에 시차 효과(Parallax) 주기 */
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.reserve-store .inner {
+  height: 600px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.reserve-store .medal {
+  width: 334px;
+  height: 334px;
+  /* 회전하는 요소의 부모 요소에 원근 거리를 추가 */
+  perspective: 600px;
+}
+
+.reserve-store .medal .front,
+.reserve-store .medal .back {
+  position: absolute;
+  backface-visibility: hidden;/* 회전된 요소의 뒷면을 숨김 */
+  transition: 1s;
+}
+
+.reserve-store .medal .front {
+  transform: rotateY(0deg);
+}
+
+.reserve-store .medal:hover .front {
+  transform: rotateY(180deg);
+}
+
+.reserve-store .medal .back {
+  transform: rotateY(-180deg);
+}
+
+.reserve-store .medal:hover .back {
+  transform: rotateY(0deg);
+}
+
+.reserve-store .medal .back .btn {
+  position: absolute;
+  top: 240px;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+
+/* FIND STORE */
+.find-store {
+  background-image: url("../images/find_store_bg.jpg");
+}
+
+.find-store .inner {
+  height: 400px;
+}
+
+.find-store .texture1 {
+  position: absolute;
+  top: 0;
+  left: 400px;
+}
+
+.find-store .texture2 {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.find-store .picture1 {
+  position: absolute;
+  top: -60px;
+  left: 0;
+  border-radius: 50%;
+  box-shadow: 2px 2px 8px 0 rgba(0, 0, 0, 0.5);
+}
+
+.find-store .picture2 {
+  position: absolute;
+  top: 150px;
+  left: 250px;
+  border-radius: 50%;
+  box-shadow: 2px 2px 8px 0 rgba(0, 0, 0, 0.5);
+}
+
+.find-store .text-group {
+  position: absolute;
+  top: 120px;
+  left: 550px;
+}
+
+.find-store .text-group .title {
+  margin-bottom: 20px;
+}
+
+.find-store .text-group .description {
+  margin-bottom: 20px;
 }

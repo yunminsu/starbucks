@@ -120,3 +120,43 @@ promotionToggleBtn.addEventListener('click', function () {
     promotionToggleIcon.textContent = 'download';
    }
 });
+
+// 유튜브 섹션 위에 부유 요소 애니메이션 처리
+// gsap.to(요소, 지속시간, 옵션: {})
+// 옵션 참고:
+gsap.to('.floating1', 1.5, {
+  delay: 1, // 얼마나 늦게 애니메이션을 시작할 것인지 지연 시간을 설정
+  y:15, // 수직으로 얼마나 움직일지 설정(translateY(수치);)과 같음)
+  repeat: -1, // 몇 번 반복 하는지를 설정, -1은 무한 반복
+  yoyo: true, // 한 번 재생된 애니메이션을 다시 뒤로 재성
+  ease: Power1.easeInOut // 타이밍 함수 적용, 느리게-빠르게-느리게
+});
+
+gsap.to('.floating2', 2, {
+  delay: 0.5,
+  y:15,
+  repeat: -1,
+  yoyo: true,
+  ease: Power1.easeInOut
+});
+
+gsap.to('.floating3', 2.5, {
+  delay: 1.5,
+  y:20,
+  repeat: -1,
+  yoyo: true,
+  ease: Power1.easeInOut
+});
+
+// ScrollMagic 사용
+// 그 외 scrollreveal
+
+const spyEls = document.querySelectorAll('section.scroll-spy');
+spyEls.forEach(function (spyEl) {
+    new ScrollMagic.Scene({ // 감시할 장면(Scene) 추가 및 옵션 지정
+      triggerElement: spyEl, // 보여짐 여부를 감시할 요소를 지정
+      triggerHook: 0.8 // 화면의 80% 지점에서 보여짐 여부 감시(0~1 사이 지정)
+    })
+    .setClassToggle(spyEl, 'show') // 요소가 화면에 보이면 show 클래스 추가
+    .addTo(new ScrollMagic.Controller()); // 컨트롤러에 장면을 할당(필수!)
+});
